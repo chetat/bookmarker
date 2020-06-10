@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
+    'django_extensions',
+    
 ]
 
 MIDDLEWARE = [
@@ -102,9 +105,23 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'account.authentication.EmailAuthBackend'
+    'account.authentication.EmailAuthBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.google.GoogleOAuth2',
+
 ]
 
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '746907249090-g68hfbm3qcuhqamjnci89qulqnbhtd7v.apps.googleusercontent.com' # Google Consumer Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '0WA4UkCovNqgPvoWl6kdMbzF' # Google Consumer Secret
+
+
+SOCIAL_AUTH_TWITTER_KEY = 'abskbmKkkJjUph5Vqlb29GssI' # Twitter API Key
+SOCIAL_AUTH_TWITTER_SECRET = 'K6PeAhOZokoWOv44Zu3EIrFzVMWe3VmFWN2Iqvhq87Gb2O8vph' # Twitter API Secret
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1187218178297777' # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '93abd8edad29428c81401145cb6aaa57' # Facebook App Secret
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -122,6 +139,8 @@ USE_TZ = True
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
+
+ALLOWED_HOSTS = ['yekuwilfred.com', 'localhost', '127.0.0.1']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
