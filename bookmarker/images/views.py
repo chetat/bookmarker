@@ -48,8 +48,8 @@ def image_detail(request, id, slug):
     )
 
 
-@ajax_required
 @login_required
+@ajax_required
 @require_POST
 def image_like(request):
     image_id = request.POST.get('id')

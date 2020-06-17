@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+from django.urls import reverse_lazy
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -142,6 +142,13 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
 ALLOWED_HOSTS = ['yekuwilfred.com', 'localhost', '127.0.0.1']
+
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda u: reverse_lazy(
+        'user_detail',
+        args=[u.username]
+    )
+}
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
