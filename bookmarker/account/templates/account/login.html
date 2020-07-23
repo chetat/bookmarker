@@ -2,11 +2,83 @@
 {% block title %} Log In {% endblock %}
 
 {% block content %}
-    <h1>Log In</h1>
-    <p>Please enter your credentials</p>
-    <form method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Log In"></p>
-    </form>
+<h1 class="text-center"> Log In</h1>
+{% if form.errors %}
+<p>
+  Your Username and Password didn't match.
+  Please Try again
+</p>
+{% else %}
+<p></p>
+{% endif %}
+
+<div class="container">
+  <p class="text-center">Please, sign up using the form below</p>
+  <div class="row py-5 align-items-center">
+    <!-- Login Form -->
+    <div class="col-md-6 col-lg-6 mx-auto">
+      <form method="POST">
+        <div class="row justify-content-center">
+          <!-- User Name -->
+          <div class="input-group col-lg-12 mb-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white px-4 border-md border-right-0">
+                <i class="fa fa-user text-muted"></i>
+              </span>
+            </div>
+            {{form.username}}
+
+          </div>
+
+          <!-- Password -->
+          <div class="input-group col-lg-12 mb-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white px-4 border-md border-right-0">
+                <i class="fa fa-lock text-muted"></i>
+              </span>
+            </div>
+            {{form.password}}
+          </div>
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ next }}" />
+          <!-- Submit Button -->
+          <div class="form-group col-lg-12 mx-auto">
+            <input type="submit" value="Sign In" class="submit-btn font-weight-bold btn btn-block py-2">
+          </div>
+
+          <!-- Divider Text -->
+          <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
+            <div class="border-bottom w-100 ml-5"></div>
+            <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
+            <div class="border-bottom w-100 mr-5"></div>
+          </div>
+
+          <!-- Social Login -->
+          <div class="form-group col-lg-12 mx-auto">
+            <a href="{% url "social:begin" "facebook" %}" class="btn facebook-btn btn-block py-2">
+              <i class="fa fa-facebook-f mr-2"></i>
+              <span class="font-weight-bold">Continue with Facebook</span>
+            </a>
+            <a href="{% url "social:begin" "twitter" %}" class="btn twitter-btn btn-block py-2">
+              <i class="fa fa-twitter mr-2"></i>
+              <span class="font-weight-bold">Continue with Twitter</span>
+            </a>
+            <a href="{% url "social:begin" "google-oauth2" %}" class="btn google-btn btn-block py-2">
+              <i class="fa fa-google mr-2"></i>
+              <span class="font-weight-bold">Continue with Google</span>
+            </a>
+          </div>
+
+          <!-- Already Registered -->
+          <div class="text-center w-100">
+            <p class="text-muted font-weight-bold">If you don't have an account <a href="{% url "login" %}"
+                class="text-primary ml-2">Register Here</a></p>
+          </div>
+          <p><a href="{% url "password_reset" %}">Forgotten your password?</a></p>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}

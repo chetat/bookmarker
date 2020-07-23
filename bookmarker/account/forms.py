@@ -16,11 +16,22 @@ class ProfileEditForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control bg-white',
+            'id': 'username',
+            'placeholder': 'Username'
+        }
+    ))
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={
+            'class': 'form-control bg-white',
+            'id': 'password',
+            'placeholder': "Password"}
+    ))
 
 
-class UserRegistrationForm(forms.Form):
+class UserRegistrationForm(forms.ModelForm):
     firstname = forms.CharField(widget=forms.TextInput(
         attrs={
             'class': 'form-control bg-white',
@@ -51,11 +62,14 @@ class UserRegistrationForm(forms.Form):
                                        'placeholder': "Enter Password"}))
     password2 = forms.CharField(label='Confirm Password',
                                 widget=forms.PasswordInput(
-                                   attrs={
-                                       'class': 'form-control bg-white',
-                                       'id': 'passwordConfirm',
-                                       'placeholder': "Confirm Password"}))
+                                    attrs={
+                                        'class': 'form-control bg-white',
+                                        'id': 'passwordConfirm',
+                                        'placeholder': "Confirm Password"}))
 
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'email')
 
     def clean_password2(self):
         cd = self.cleaned_data

@@ -22,6 +22,7 @@ def register(request):
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
             new_user = user_form.save(commit=False)
+            print(new_user)
             new_user.set_password(
                 user_form.cleaned_data['password']
             )
@@ -65,7 +66,9 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Authenticated Successfully')
+                    return render(request, 'account/dashboard.html', {
+                        'user': user
+                    })
                 else:
                     return HttpResponse('Disabled Account')
             else:
@@ -120,7 +123,6 @@ def user_list(request):
 
 @login_required
 def user_detail(request, username):
-    print(username)
     user = get_object_or_404(
         User,
         username=username,
