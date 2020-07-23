@@ -6,7 +6,7 @@
     var min_height = 100;
   
     function bookmarklet(msg) {
-      // load CSS
+      // load CSS into target html page
       var css = jQuery('<link>');
       css.attr({
         rel: 'stylesheet',
@@ -15,7 +15,7 @@
       });
       jQuery('head').append(css);
   
-      // load HTML
+      // load HTML into target webpage
       box_html = '<div id="bookmarklet"><a href="#" id="close">&times;</a><h1>Select an image to bookmark:</h1><div class="images"></div></div>';
       jQuery('body').append(box_html);
   
@@ -24,7 +24,9 @@
          jQuery('#bookmarklet').remove();
       });
       // find images and display them
-      jQuery.each(jQuery('img[src$="jpg"]'), function(index, image) {
+      jQuery.each(jQuery('img[src$="png"]'), function(index, image) {
+        console.log(jQuery(image).attr('src'))
+
         if (jQuery(image).width() >= min_width && jQuery(image).height()
         >= min_height)
         {

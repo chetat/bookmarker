@@ -2,8 +2,7 @@
 {% block title %}{{ image.title }}{% endblock %}
 {% block content %}
   <h1>{{ image.title }}</h1>
- 
-  {% load thumbnail %}
+ {% load thumbnail %}
 <a href="{{ image.image.url }}">
   <img src="{% thumbnail image.image 300x0 %}" class="image-detail">
 </a>
@@ -29,18 +28,17 @@
     </a>
   </div>
   {{ image.description|linebreaks }}
-</div>
-
+    </div>
 
     <div class="image-likes">
-      {% for user in users_like %}
-        <div>
-          <img src="{{ user.profile.photo.url }}">
-          <p>{{ user.first_name }}</p>
-        </div>
-      {% empty %}
-        Nobody likes this image yet.
-      {% endfor %}
+          {% for user in users_like %}
+            <div>
+              <img src="{{ user.photo.url }}">
+              <p>{{ user.first_name }}</p>
+            </div>
+          {% empty %}
+            Nobody likes this image yet.
+          {% endfor %}
     </div>
   {% endwith %}
   

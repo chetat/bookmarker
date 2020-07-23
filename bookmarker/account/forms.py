@@ -20,15 +20,42 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
-class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(label='Password',
-                               widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirm Password',
-                                widget=forms.PasswordInput)
+class UserRegistrationForm(forms.Form):
+    firstname = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control bg-white',
+            'id': 'firstname',
+            'placeholder': 'First Name'
+        }
+    ))
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control bg-white',
+            'id': 'username',
+            'placeholder': 'Username'
+        }
+    ))
 
-    class Meta:
-        model = User
-        fields = ('username', 'first_name', 'email')
+    email = forms.CharField(widget=forms.EmailInput(
+        attrs={
+            'class': 'form-control bg-white',
+            'id': 'email',
+            'placeholder': 'Email Address'
+        }
+    ))
+    password = forms.CharField(label='Password',
+                               widget=forms.PasswordInput(
+                                   attrs={
+                                       'class': 'form-control bg-white',
+                                       'id': 'password',
+                                       'placeholder': "Enter Password"}))
+    password2 = forms.CharField(label='Confirm Password',
+                                widget=forms.PasswordInput(
+                                   attrs={
+                                       'class': 'form-control bg-white',
+                                       'id': 'passwordConfirm',
+                                       'placeholder': "Confirm Password"}))
+
 
     def clean_password2(self):
         cd = self.cleaned_data
