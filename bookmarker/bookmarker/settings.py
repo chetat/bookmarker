@@ -112,16 +112,16 @@ AUTHENTICATION_BACKENDS = [
 
 ]
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '746907249090-g68hfbm3qcuhqamjnci89qulqnbhtd7v.apps.googleusercontent.com' # Google Consumer Key
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '0WA4UkCovNqgPvoWl6kdMbzF' # Google Consumer Secret
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ["SOCIAL_AUTH_GOOGLE_OAUTH2_KEY"]  # Google Consumer Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ["SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET"] # Google Consumer Secret
 
 
-SOCIAL_AUTH_TWITTER_KEY = 'abskbmKkkJjUph5Vqlb29GssI' # Twitter API Key
-SOCIAL_AUTH_TWITTER_SECRET = 'K6PeAhOZokoWOv44Zu3EIrFzVMWe3VmFWN2Iqvhq87Gb2O8vph' # Twitter API Secret
+SOCIAL_AUTH_TWITTER_KEY = os.environ["SOCIAL_AUTH_TWITTER_KEY"] # Twitter API Key
+SOCIAL_AUTH_TWITTER_SECRET = os.environ['SOCIAL_AUTH_TWITTER_SECRET'] # Twitter API Secret
 
 
-SOCIAL_AUTH_FACEBOOK_KEY = '1187218178297777' # Facebook App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = '93abd8edad29428c81401145cb6aaa57' # Facebook App Secret
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ["SOCIAL-AUTH_FACEBOOK_KEY"] # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ["SOCIAL_AUTH_FACEBOOK_SECRET"] # Facebook App Secret
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
