@@ -140,7 +140,8 @@ LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
-ALLOWED_HOSTS = ['bookmarker.yeku.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['bookmarker.yeku.com', 'bookmark23.herokuapp.com/',
+                 'localhost', '127.0.0.1']
 
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: reverse_lazy(
